@@ -1,0 +1,28 @@
+{
+  "name": "natours",
+  "version": "1.0.0",
+  "description": "Learning Node.js Express.js MongooDB and mongoose",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ankurhalder/natours.git"
+  },
+  "keywords": [
+    "Ankur",
+    "Halder",
+    "Natours",
+    "Node.js",
+    "Express.js",
+    "MongooDB",
+    "mongoose"
+  ],
+  "author": "Ankur Halder",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ankurhalder/natours/issues"
+  },
+  "homepage": "https://github.com/ankurhalder/natours#readme"
+}
