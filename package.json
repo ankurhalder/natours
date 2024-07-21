@@ -24,5 +24,8 @@
   "bugs": {
     "url": "https://github.com/ankurhalder/natours/issues"
   },
-  "homepage": "https://github.com/ankurhalder/natours#readme"
+  "homepage": "https://github.com/ankurhalder/natours#readme",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
 }
