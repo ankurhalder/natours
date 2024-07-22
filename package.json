@@ -26,6 +26,7 @@
   },
   "homepage": "https://github.com/ankurhalder/natours#readme",
   "dependencies": {
-    "express": "^4.19.2"
+    "express": "^4.19.2",
+    "morgan": "^1.10.0"
   }
 }
