@@ -4,6 +4,16 @@ const app = express();
 
 app.use(express.json());
 
+app.use((req, res, next) => {
+  console.log("hello from middleware 😊");
+  next();
+});
+
+app.use((req, res, next) => {
+  req.requestTime = new Date().toISOString();
+  next();
+});
+
 const tours = fs.readFileSync(
   `${__dirname}/dev-data/data/tours-simple.json`,
   "utf-8"
@@ -13,6 +23,7 @@ const toursData = JSON.parse(tours);
 const getAllTours = (req, res) => {
   res.status(200).json({
     status: "success",
+    requetedAt: req.requestTime,
     results: toursData.length,
     data: { toursData },
   });
