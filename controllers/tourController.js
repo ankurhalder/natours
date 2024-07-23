@@ -15,6 +15,15 @@ exports.checkID = (req, res, next, val) => {
   next();
 };
 
+exports.checkBody = (req, res, next) => {
+  if (req.body.name || !req.body.price)
+    return res.status(400).json({
+      status: "fail",
+      message: "Missing name or Price",
+    });
+  next();
+};
+
 const toursData = JSON.parse(tours);
 exports.getAllTours = (req, res) => {
   res.status(200).json({
@@ -43,12 +52,6 @@ exports.createTour = (req, res) => {
     `${__dirname}/dev-data/data/tours-simple.json`,
     JSON.stringify(toursData, null, 2),
     (err) => {
-      if (err) {
-        return res.status(500).json({
-          status: "fail",
-          message: "Internal Server Error",
-        });
-      }
       res.status(201).json({
         status: "success",
         results: toursData.length,
