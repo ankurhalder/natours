@@ -4,22 +4,28 @@ exports.getAllTours = async (req, res) => {
   try {
     //@ BUILD QUERY
 
-    //# 1) FILTERING
+    //# 1A) FILTERING
     const queryObj = Object.assign({}, req.query);
     const excludeFields = ["page", "sort", "limit", "fields"];
     excludeFields.forEach((el) => delete queryObj[el]);
     // console.log(queryObj, req.query);
-    //# 2) ADVANCED FILTERING
+    //# 1B) ADVANCED FILTERING
     let queryString = JSON.stringify(queryObj);
     queryString = queryString.replace(
       /\b(gte|gt|lte|lt)\b/g,
       (match) => `$${match}`,
     );
     // console.log(JSON.parse(queryString));
-
+    let query = Tour.find(JSON.parse(queryString));
+    // #2 SORTING
+    if (req.query.sort) {
+      const sortBy = req.query.sort.split(",").join(" ");
+      query = query.sort(sortBy);
+    } else {
+      query = query.sort("-createdAt");
+    }
     //@ EXECUTE QUERY
 
-    const query = Tour.find(JSON.parse(queryString));
     const tours = await query;
     //@ SEND RESPONSE
 
@@ -70,8 +76,17 @@ exports.createTour = async (req, res) => {
 
 exports.updateTour = async (req, res) => {
   try {
-    const tour = await Tour.findByIdAndUpdate(req.params.id);
-    res.status(201).json({
+    const tour = await Tour.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+      runValidators: true,
+    });
+    if (!tour) {
+      return res.status(404).json({
+        status: "fail",
+        message: "No tour found with that ID",
+      });
+    }
+    res.status(200).json({
       status: "success",
       data: { tour: tour },
     });
