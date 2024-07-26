@@ -37,8 +37,7 @@ module.exports = (err, req, res, next) => {
   if (process.env.NODE_ENV === "development") {
     sendErrorDev(err, res);
   } else if (process.env.NODE_ENV === "production") {
-    let error = { ...err };
-    // BUG HERE object id should be name but i cant find it to replacing it with error kind for now
+    let error = { ...err, name: err.name };
     if (error.kind === "ObjectId") {
       error = handleCastErrorDB(error);
     }
