@@ -2,7 +2,7 @@
   "extends": ["airbnb", "prettier", "plugin:node/recommended"],
   "plugins": ["prettier"],
   "rules": {
-    "prettier/prettier": "off", // Disable the prettier/prettier rule
+    "prettier/prettier": "off",
     "spaced-comment": "off",
     "no-console": "warn",
     "consistent-return": "off",
@@ -15,7 +15,6 @@
     "class-methods-use-this": "off",
     "no-unused-vars": ["error", { "argsIgnorePattern": "req|res|next|val" }],
 
-    // Disable the prefer-object-spread rule
     "prefer-object-spread": "off"
   }
 }
