@@ -55,9 +55,6 @@ module.exports = (err, req, res, next) => {
     if (error._message === "Tour validation failed") {
       error = handleDuplicateDB(error);
     }
-    if (error._message === "Tour validation failed") {
-      error = handleDuplicateDB(error);
-    }
     if (error.name === "ValidationError") {
       error = handleValidationErrorDB(error);
     }
